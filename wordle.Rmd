@@ -5,15 +5,22 @@ date: "2024-02-12"
 ---
 ### Step 1
 ```{r}
-load_dictionary <- function(filename){ #Creating function with single argument, "filename"
-  library(readr) #Loading {readr} so I can read in .txt from https:// filename
-   f <- filename #f should be https:// filename
-   d <- read_tsv(f, col_names = TRUE) #Creating dataframe from .txt file
-   return(d$words) #Creating vector from "words" column (column name of single column in both .txt files)
+load_dictionary <- function(filename){ 
+  #Creating function with single argument, "filename"
+  library(readr) 
+  #Loading {readr} so I can read in .txt from https:// filename
+   f <- filename 
+   #f should be https:// filename
+   d <- read_tsv(f, col_names = TRUE) 
+   #Creating dataframe from .txt file
+   return(d$words) 
+   #Creating vector from "words" column (column name of single column in both .txt files)
 }
 
-valid_list <- load_dictionary("https://raw.githubusercontent.com/jamiewiener119/exercise-04/main/collins-scrabble-words-2019.txt") #Creating vector, valid_list, of valid words to guess
-solution_list <- load_dictionary("https://raw.githubusercontent.com/jamiewiener119/exercise-04/main/google-10000-english-usa-no-swears.txt") #Creating vector, solution_list, of possible solution words
+valid_list <- load_dictionary("https://raw.githubusercontent.com/jamiewiener119/exercise-04/main/collins-scrabble-words-2019.txt") 
+#Creating vector, valid_list, of valid words to guess
+solution_list <- load_dictionary("https://raw.githubusercontent.com/jamiewiener119/exercise-04/main/google-10000-english-usa-no-swears.txt") 
+#Creating vector, solution_list, of possible solution words
 
 str(valid_list) #Checking if above was successful
 str(solution_list)
@@ -21,22 +28,26 @@ str(solution_list)
 
 ### Step 2
 ```{r}
-solution_list <-intersect(valid_list,solution_list) #Winnowing solution_list to only include words that are included in valid_list
+solution_list <-intersect(valid_list,solution_list) 
+#Winnowing solution_list to only include words that are included in valid_list
 #Rather than 9884 words, the updated solution_list only contains 8336 words
 ```
 
 
 ### Step 3
 ```{r}
-pick_solution <- function(solution_list){ #Creating function with single argument, "solution_list"
+pick_solution <- function(solution_list){ 
+  #Creating function with single argument, "solution_list"
   five_letter_solution <- solution_list[str_length(solution_list)==5] #creating vector five_letter_solution, which is a subset of solution_list containing only entries (words) with a computed length of 5 codepoints (letters)
   w <- sample(five_letter_solution, size = 1, replace = FALSE, prob = NULL) #Assigning one randomly sampled word from five_letter_solution (without replacement or weighted probabilities) to variable, w
-  return(strsplit(w,"")) #Have function return string in variable w split into individual codepoints (letters)
+  return(strsplit(w,"")) 
+  #Have function return string in variable w split into individual codepoints (letters)
 }
 
 pick_solution(solution_list) #Checking if above was successful
 
-solution <- pick_solution(solution_list) #Assigning result of function to new variable, solution
+solution <- pick_solution(solution_list) 
+#Assigning result of function to new variable, solution
 ```
 
 ### Step 4
