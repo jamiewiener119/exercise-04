@@ -18,6 +18,26 @@ solution_list <- load_dictionary("https://raw.githubusercontent.com/jamiewiener1
 str(valid_list) #Checking if above was successful
 str(solution_list)
 ```
-### Step 2
 
+### Step 2
+```{r}
+solution_list <-intersect(valid_list,solution_list) #Winnowing solution_list to only include words that are included in valid_list
+#Rather than 9884 words, the updated solution_list only contains 8336 words
+```
+
+
+### Step 3
+```{r}
+pick_solution <- function(solution_list){ #Creating function with single argument, "solution_list"
+  five_letter_solution <- solution_list[str_length(solution_list)==5] #creating vector five_letter_solution, which is a subset of solution_list containing only entries (words) with a computed length of 5 codepoints (letters)
+  w <- sample(five_letter_solution, size = 1, replace = FALSE, prob = NULL) #Assigning one randomly sampled word from five_letter_solution (without replacement or weighted probabilities) to variable, w
+  return(strsplit(w,"")) #Have function return string in variable w split into individual codepoints (letters)
+}
+
+pick_solution(solution_list) #Checking if above was successful
+
+solution <- pick_solution(solution_list) #Assigning result of function to new variable, solution
+```
+
+### Step 4
 
