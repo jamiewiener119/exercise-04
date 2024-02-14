@@ -38,7 +38,8 @@ solution_list <-intersect(valid_list,solution_list)
 ```{r}
 pick_solution <- function(solution_list){ 
   #Creating function with single argument, "solution_list"
-  five_letter_solution <- solution_list[str_length(solution_list)==5] #creating vector five_letter_solution, which is a subset of solution_list containing only entries (words) with a computed length of 5 codepoints (letters)
+  library(stringr) #Loading {stringr} because using str_length()
+  five_letter_solution <- solution_list[str_length(solution_list)==5] #Creating vector five_letter_solution, which is a subset of solution_list containing only entries (words) with a computed length of 5 codepoints (letters)
   w <- sample(five_letter_solution, size = 1, replace = FALSE, prob = NULL) #Assigning one randomly sampled word from five_letter_solution (without replacement or weighted probabilities) to variable, w
   return(strsplit(w,"")) 
   #Have function return string in variable w split into individual codepoints (letters)
@@ -51,4 +52,15 @@ solution <- pick_solution(solution_list)
 ```
 
 ### Step 4
+```{r}
+play_wordle <- function(solution){
+  print(toupper("WELCOME! You have 6 chances to guess the 5-letter word."))
+  #Tell the player the rules of the game
+  guess <- readline(toupper("Enter your guess here, then press <enter>: "))
+  #Display what letters the player has not yet guessed
+  #Prompt the player for a guess
+  #Read in their guess
+ #Check that guess is valid
+}
+```
 
