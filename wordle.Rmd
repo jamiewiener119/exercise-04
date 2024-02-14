@@ -50,14 +50,26 @@ pick_solution(solution_list) #Checking if above was successful
 solution <- pick_solution(solution_list) 
 #Assigning result of function to new variable, solution
 ```
-
 ### Step 4
 ```{r}
 play_wordle <- function(solution){
+  library(dplyr)
+  solution <- pick_solution(solution_list) 
   print("WELCOME! YOU HAVE 6 CHANCES TO GUESS THE 5-LETTER WORD.")
-  guess <- strsplit(readline("ENTER YOUR GUESS HERE, THEN PRESS <ENTER>: "),"")
-  return(toupper(guess))}
+  guess <- strsplit(toupper(readline("ENTER YOUR GUESS HERE, THEN PRESS <ENTER>: ")),"")
+  print(guess)
+  }
 
-play_wordle(solution)
+guess <- play_wordle(solution)
+
+evaluate_guess <- function(guess,solution){
+  if (setequal(guess,solution)==TRUE){
+      print("YOU WIN :)")
+} else {
+  print("TRY AGAIN :(")
+}
+}
+
+evaluate_guess(guess,solution)
 ```
 
