@@ -54,13 +54,10 @@ solution <- pick_solution(solution_list)
 ### Step 4
 ```{r}
 play_wordle <- function(solution){
-  print(toupper("WELCOME! You have 6 chances to guess the 5-letter word."))
-  #Tell the player the rules of the game
-  guess <- readline(toupper("Enter your guess here, then press <enter>: "))
-  #Display what letters the player has not yet guessed
-  #Prompt the player for a guess
-  #Read in their guess
- #Check that guess is valid
-}
+  print("WELCOME! YOU HAVE 6 CHANCES TO GUESS THE 5-LETTER WORD.")
+  guess <- strsplit(readline("ENTER YOUR GUESS HERE, THEN PRESS <ENTER>: "),"")
+  return(toupper(guess))}
+
+play_wordle(solution)
 ```
 
