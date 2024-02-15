@@ -59,11 +59,7 @@ play_wordle <- function(solution){
   print("WELCOME! YOU HAVE 6 CHANCES TO GUESS THE 5-LETTER WORD.")
   guess <- strsplit(toupper(readline("ENTER YOUR GUESS HERE, THEN PRESS <ENTER>: ")),"")
   print(guess)
-  }
-
-guess <- play_wordle(solution)
-
-evaluate_guess <- function(guess,solution){
+  evaluate_guess <- function(guess,solution){
   if (setequal(guess[[1]][1],solution[[1]][1])==TRUE){
   print_color(guess[[1]][1],"green")
   } else {
@@ -89,8 +85,15 @@ evaluate_guess <- function(guess,solution){
   } else {
     print_color(guess[[1]][5],"red")
   }
+  if(setequal(guess,solution)==TRUE){
+    print("YOU WIN :)")
+  } else{
+    print("TRY AGAIN :(")
+  }
+  }
+  return(evaluate_guess(guess,solution))
 }
 
-evaluate_guess(guess,solution)
+play_wordle(solution)
 ```
 
