@@ -52,11 +52,12 @@ solution <- pick_solution(solution_list)
 ```
 ### Step 4
 ```{r}
-play_wordle <- function(solution){
+play_wordle <- function(solution,num_guess=6){
   library(dplyr) 
   library(insight) #To use print_color()
   print("WELCOME! YOU HAVE 6 CHANCES TO GUESS THE 5-LETTER WORD.")
   guess <- unlist(strsplit(toupper(readline("ENTER YOUR GUESS HERE, THEN PRESS <ENTER>: ")),""))
+  for (i in 1:num_guess){
   evaluate_guess <- function(guess,solution){
   if (setequal(guess[1],solution[1])==TRUE){
   print_color(guess[1],"green")
@@ -103,7 +104,8 @@ play_wordle <- function(solution){
   } else {
     print("SORRY! THAT'S NOT IT.")
     play_wordle(solution)
-  }}
+  }}}
+  print(setdiff(LETTERS,guess))
   return(evaluate_guess(guess,solution))
 }
 
